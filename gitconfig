@@ -1,0 +1,127 @@
+[user]
+	name = Stephan Bechter
+	email = s.bechter@netconomy.net
+
+[core]
+	autocrlf = input
+
+[branch]
+	autosetupmerge = true
+
+[alias]
+    st = status
+    ci = commit
+    br = branch
+    ba = branch -a
+    co = checkout
+    df = diff
+	cl = clone
+	diff = diff --word-diff
+	
+    lg = log -p
+	lf = log --name-status
+	le = log --oneline --decorate
+	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+	ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lotree = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    loshort = log --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    slog = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	
+	dlc = diff --cached HEAD^
+	
+    ls = ls-files
+
+	# list aliases	
+	la = "!git config -l | grep alias | cut -c 7-"
+
+	# assume modified files as unchanged for not committing
+	assume = update-index --assume-unchanged
+	unassume = update-index --no-assume-unchanged
+	assumed = "!git ls-files -v | grep ^h | cut -c 3-"
+	unassumeall = "!git assumed | xargs git update-index --no-assume-unchanged"
+	assumeall = "!git st -s | awk {'print $2'} | xargs git assume"
+
+	lasttag = describe --tags --abbrev=0
+	
+	ours = "!f() { git co --ours $@ && git add $@; }; f"
+	theirs = "!f() { git co --theirs $@ && git add $@; }; f"
+
+	# reset shortcuts
+	r = reset
+	r1 = reset HEAD^
+    # same as r1
+    rollback = reset --soft HEAD^
+	r2 = reset HEAD^^
+	rh = reset --hard
+	rh1 = reset HEAD^ --hard
+	rh2 = reset HEAD^^ --hard
+
+	# stash operations
+	sl = stash list
+	sa = stash apply
+	ss = stash save
+	
+	pull = pull --recurse-submodules
+	up = pull --ff-only --all -p
+    
+    files = diff-tree --no-commit-id --name-only -r
+	btree = log --all --graph --decorate --oneline --simplify-by-decoration --no-merges --abbrev-commit
+    
+    incoming = "!git remote update -p; git log ..@{u}"
+	outgoing = log @{u}.. 
+    unstage = reset HEAD --
+	resetall = reset --hard
+    actrev = rev-parse HEAD
+	
+	suboutgoing = submodule foreach git log @{u}.. 
+
+	toShopsStage = git log $(shopsstage)..HEAD 
+[color]
+    ui = auto
+  [color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+  [color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+  [color "status"]
+    added = yellow
+    changed = green bold 
+    untracked = cyan
+
+
+[merge]
+	tool = extMerge
+[mergetool "extMerge"]
+	cmd = extMerge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+[mergetool]
+	trustExitCode = false
+	keepBackup = false
+[diff]
+	tool = p4merge
+
+[checkstyle]
+	jar = /home/devel/checkstyle/checkstyle-5.6-all.jar
+	config = /home/devel/dev-config/checkstyle.xml
+
+[java]
+	command = /opt/java/bin/java
+[hooks]
+	gitcommand = /usr/bin/git
+[push]
+	default = simple
+[remote-hg]
+	track-branches = false
+
+[credential "http://rc.local.netconomy.net/"]
+    username=sbechter
+    helper=/usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
+    useHttpPath=true
+
+[http]
+	sslverify = false
