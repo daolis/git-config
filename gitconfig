@@ -28,7 +28,9 @@
     lotree = log --graph --decorate --pretty=oneline --abbrev-commit --all
     loshort = log --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     slog = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	
+    # branch activity (last logs on branches)
+	activity = !git log --simplify-by-decoration --decorate --date=relative --date-order $(git branch -a | cut -c 3- | grep -v -- \"->\")
+
 	dlc = diff --cached HEAD^
 	
     ls = ls-files
@@ -91,7 +93,7 @@
     new = green bold
   [color "status"]
     added = yellow
-    changed = green bold 
+    changed = magenta 
     untracked = cyan
 
 
