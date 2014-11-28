@@ -17,3 +17,4 @@ Copy the file ```gitignore-sample``` to you home directory, rename it to ```.git
 
 Add own configuration directly to the ```.gitconfig``` file.
 
+If you do not want to use the pre-defined settings uncomment the ```path=file``` setting in ```[include]``` section.
