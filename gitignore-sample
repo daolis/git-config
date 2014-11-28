@@ -1,0 +1,18 @@
+# This is a sample file - copy it to ~/.gitconfig, change your name, ...
+#
+[user]
+    name = Stephan Bechter
+    email = s.bechter@netconomy.net
+           
+[core]
+    # unix line endings
+    autocrlf = input
+    # windows line endings
+    # autocrlf = true
+
+[include]
+    path = .git-config/common
+    path = .git-config/colors
+    path = .git-config/tools
+    path = .git-config/aliases
+

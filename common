@@ -1,0 +1,8 @@
+[branch]
+	autosetupmerge = true
+
+[push]
+	default = simple
+
+[http]
+	sslverify = false

@@ -1,0 +1,12 @@
+[merge]
+	tool = p4merge
+[mergetool "extMerge"]
+	cmd = p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+[mergetool]
+	trustExitCode = false
+	keepBackup = false
+[diff]
+	tool = p4merge
+
+[http]
+	sslverify = false
