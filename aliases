@@ -70,3 +70,4 @@
 	
 	suboutgoing = submodule foreach git log @{u}.. 
 
+	rv = remote -v # show remotes with url
