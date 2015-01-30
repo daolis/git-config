@@ -16,6 +16,7 @@
 	ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lotree = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	btree = log --all --graph --decorate --oneline --simplify-by-decoration --no-merges --abbrev-commit
     loshort = log --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     slog = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     # branch activity (last logs on branches)
@@ -59,15 +60,25 @@
 	pull = pull --recurse-submodules
 	up = pull --ff-only --all -p
     
-    files = diff-tree --no-commit-id --name-only -r
-	btree = log --all --graph --decorate --oneline --simplify-by-decoration --no-merges --abbrev-commit
+    # show different files for two revisions: 'git files branch1 branch2'
+	files = diff-tree --no-commit-id --name-only -r
     
-    incoming = "!git remote update -p; git log ..@{u}"
-	outgoing = log @{u}.. 
-    unstage = reset HEAD --
-	resetall = reset --hard
-    actrev = rev-parse HEAD
+    # remove entry from staging area
+	unstage = reset HEAD --
+    # show hash of HEAD
+	actrev = rev-parse HEAD
 	
+	# show not pulled commits for current branch
+    incoming = "!git remote update -p; git log ..@{u}"
+	# show not pushed commits for current branch
+	outgoing = log @{u}.. 
+	# show not pushed commits on all branches
+	outall = log --branches --not --remotes --simplify-by-decoration --decorate --oneline
+
 	suboutgoing = submodule foreach git log @{u}.. 
 
-	rv = remote -v # show remotes with url
+	# show remotes in verbose mode (incl. url)
+	rv = remote -v
+	# track remote branch
+	tr = checkout -t
+

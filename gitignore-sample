@@ -16,3 +16,5 @@
     path = .git-config/tools
     path = .git-config/aliases
 
+# Now following by 'git config' ADDED configuration values 
+
