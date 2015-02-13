@@ -75,7 +75,12 @@
 	# show not pushed commits on all branches
 	outall = log --branches --not --remotes --simplify-by-decoration --decorate --oneline
 
-	suboutgoing = submodule foreach git log @{u}.. 
+	# subtree
+    # prune local tags are not on remote origin
+    subt-prunetags=fetch --prune origin +refs/tags/*:refs/tags/*
+
+    # submodule aliasas
+    suboutgoing = submodule foreach git log @{u}.. 
 
 	# show remotes in verbose mode (incl. url)
 	rv = remote -v
