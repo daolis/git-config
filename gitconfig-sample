@@ -1,8 +1,8 @@
 # This is a sample file - copy it to ~/.gitconfig, change your name, ...
 #
 [user]
-    name = Stephan Bechter
-    email = s.bechter@netconomy.net
+    name = Your name
+    email = Yout email address
            
 [core]
     # unix line endings
