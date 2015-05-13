@@ -57,8 +57,8 @@
 	sa = stash apply
 	ss = stash save
 	
+    up = pull --ff-only --all -p
 	pull = pull --recurse-submodules
-	up = pull --ff-only --all -p
     
     # show different files for two revisions: 'git files branch1 branch2'
 	files = diff-tree --no-commit-id --name-only -r
@@ -81,9 +81,12 @@
 
     # submodule aliasas
     suboutgoing = submodule foreach git log @{u}.. 
+    pulllastdevelop =!git co develop && git pull && git submodule foreach git co develop && git submodule foreach git pull
 
 	# show remotes in verbose mode (incl. url)
 	rv = remote -v
 	# track remote branch
 	tr = checkout -t
 
+    daily = "!f() { git config user.email }; f"
+    daily = log --since '1 day ago' --oneline --author s.bechter@netconomy.net 
